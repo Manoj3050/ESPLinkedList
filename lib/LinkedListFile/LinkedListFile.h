@@ -12,7 +12,6 @@ uses SPIFF file system for using data since memory is too small to handle data l
 typedef struct INNER_ITEM {
     int itemSize;
     int offset;
-    int item;
     struct INNER_ITEM * nextItem;
 }INNER_ITEM;
 

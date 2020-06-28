@@ -50,7 +50,6 @@ void LinkedListFile::addItem(int item){
         _begin->itemSize = sizeof(item);
         _begin->nextItem = NULL;
         _begin->offset = 0;
-        _begin->item = item;
         _curItem = _begin;
         //write item to the file
         listFile.seek(0,SeekSet);
@@ -64,7 +63,6 @@ void LinkedListFile::addItem(int item){
         newItem->itemSize = sizeof(item);
         newItem->nextItem = NULL;
         newItem->offset = offSet + _curItem->itemSize;
-        newItem->item = item;
         _curItem->nextItem = newItem;
         listFile.seek(offSet,SeekSet);
         listFile.write((byte*)&item, sizeof(item));
