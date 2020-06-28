@@ -1,17 +1,27 @@
 #include <Arduino.h>
 #include "LinkedListFile.h"
+#define STRUCT
 
+typedef struct {
+    String Name;
+    float x;
+} MYDATA;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
-  LinkedListFile list;
+  #ifdef INT
+  LinkedListFile<int> list;
   //list = LinkedListFile();
-
-  list.addItem(10);
-  list.addItem(20);
-  list.addItem(30);
-  list.addItem(40);
-  list.addItem(25);
+  int tmp = 10;
+  list.addItem(tmp);
+  tmp = 20;
+  list.addItem(tmp);
+  tmp = 30;
+  list.addItem(tmp);
+  tmp = 40;
+  list.addItem(tmp);
+  tmp = 45;
+  list.addItem(tmp);
   Serial.println(list.getSize());
   list.printList();
 
@@ -21,8 +31,22 @@ void setup() {
   list.printList();
   list.removeItem(0);
   list.printList();
-  list.addItem(25);
+  tmp = 35;
+  list.addItem(tmp);
   list.printList();
+  #endif
+  #ifdef STRUCT
+  LinkedListFile<MYDATA> listS;
+  MYDATA tmpS = {"Hello", 10.5};
+  listS.addItem(tmpS);
+  tmpS.x = 5.43;
+  tmpS.Name = "Hi";
+  listS.addItem(tmpS);
+  tmpS.x = 3.14567;
+  tmpS.Name = "Bonjure";
+  listS.addItem(tmpS);
+  listS.printList();
+  #endif
 }
 
 
